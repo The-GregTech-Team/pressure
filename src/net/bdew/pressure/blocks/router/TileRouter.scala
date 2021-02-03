@@ -40,7 +40,7 @@ class TileRouter extends TileDataSlotsTicking with IPressureInject with IPressur
   def canWorkWithRsMode(rsMode: RSMode.Value) = rsMode match {
     case RSMode.ALWAYS => true
     case RSMode.NEVER => false
-    case _ => (getWorld.isBlockIndirectlyGettingPowered(pos) > 0) ^ (rsMode == RSMode.RS_OFF)
+    case _ => (getWorld.getRedstonePowerFromNeighbors(pos) > 0) ^ (rsMode == RSMode.RS_OFF)
   }
 
   def isSideValidIO(side: EnumFacing, fluid: Fluid, modes: Set[RouterSideMode.Value]): Boolean =

@@ -9,8 +9,7 @@
 
 package net.bdew.pressure.blocks.tank
 
-import net.bdew.lib.PimpVanilla._
-import net.bdew.lib.capabilities.helpers.{FluidDrainMonitor, FluidHelper, FluidMultiHandler}
+import net.bdew.lib.capabilities.helpers.{FluidHelper, FluidMultiHandler}
 import net.bdew.lib.capabilities.{Capabilities, CapabilityProvider}
 import net.bdew.lib.multiblock.data.OutputConfigFluid
 import net.bdew.lib.multiblock.interact.CIFluidOutput
@@ -24,10 +23,9 @@ abstract class TileFluidOutputBase extends TileOutput[OutputConfigFluid] with RS
   override def getCore = getCoreAs[CIFluidOutput]
   override val outputConfigType = classOf[OutputConfigFluid]
 
-  addCapabilityOption(Capabilities.CAP_FLUID_HANDLER) { side =>
-    if (getCfg(side).exists(checkCanOutput))
-      getCore map (core => new FluidDrainMonitor(FluidMultiHandler.wrap(core.getOutputTanks), stack => addOutput(side, stack)))
-    else None
+  // bdew/pressure#111
+  addCapabilityOption(Capabilities.CAP_FLUID_HANDLER) { _ =>
+    getCore.map(core => FluidMultiHandler.wrap(core.getOutputTanks))
   }
 
   def addOutput(side: EnumFacing, res: FluidStack) = {

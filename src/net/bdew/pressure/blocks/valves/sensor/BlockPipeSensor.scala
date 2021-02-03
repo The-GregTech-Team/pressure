@@ -45,7 +45,7 @@ object BlockPipeSensor extends BlockValve("pipe_sensor") with HasTE[TilePipeSens
       for ((fluid, amount) <- flow) {
         player.sendMessage(
           L(" * %s - %s mB/t",
-            L(FluidNameHelper.sanitizeUnlocalizedName(fluid)).setColor(Color.YELLOW),
+            L(FluidNameHelper.sanitizeTranslationKey(fluid)).setColor(Color.YELLOW),
             DecFormat.short(amount).setColor(Color.YELLOW)
           )
         )

@@ -12,8 +12,8 @@ package net.bdew.pressure.misc
 import net.minecraftforge.fluids.{Fluid, FluidRegistry}
 
 object FluidNameHelper {
-  // because their getUnlocalizedName returns bullshit
-  def sanitizeUnlocalizedName(f: Fluid) = f match {
+  // because their getTranslationKey returns bullshit
+  def sanitizeTranslationKey(f: Fluid) = f match {
     case FluidRegistry.WATER => "tile.water.name"
     case FluidRegistry.LAVA => "tile.lava.name"
     case _ => f.getUnlocalizedName

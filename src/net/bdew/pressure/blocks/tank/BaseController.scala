@@ -9,6 +9,7 @@
 
 package net.bdew.pressure.blocks.tank
 
+import net.bdew.lib.multiblock.ResourceProvider
 import net.bdew.lib.multiblock.block.BlockController
 import net.bdew.lib.multiblock.tile.TileController
 import net.bdew.pressure.PressureResourceProvider
@@ -16,7 +17,7 @@ import net.minecraft.block.material.Material
 
 class BaseController[T <: TileController](name: String, TEClass: Class[T])
   extends BlockController(name, Material.IRON, TEClass) {
-  override def resources = PressureResourceProvider
+  override def resources: ResourceProvider = PressureResourceProvider
 
   setHardness(1)
 }

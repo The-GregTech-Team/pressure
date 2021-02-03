@@ -9,7 +9,6 @@
 
 package net.bdew.pressure.items
 
-import net.bdew.lib.PimpVanilla._
 import net.bdew.lib.items.BaseItem
 import net.bdew.pressure.pressurenet.{Helper, ScanResult}
 import net.minecraft.entity.player.EntityPlayer
@@ -32,7 +31,7 @@ object ItemDebugger extends BaseItem("debugger") {
       player.sendMessage("Outs: " + (outs map (_.blockRefFace) mkString ", "))
       player.sendMessage("Seen:")
       for (x <- seen)
-        player.sendMessage(" * %s: %s".format(x, world.getBlockState(x).getBlock.getUnlocalizedName))
+        player.sendMessage(" * %s: %s".format(x, world.getBlockState(x).getBlock.getTranslationKey))
       player.sendMessage("PConn: " + Helper.getPipeConnections(world, br).mkString(","))
       player.sendMessage("Scanned %d blocks, took %d μs".format(seen.size, scanTime / 1000))
     }

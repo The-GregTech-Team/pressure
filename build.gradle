@@ -37,11 +37,7 @@ if (project.hasProperty('forgeOverride')) {
     config.forge.version = forgeOverride
 }
 
-if (project.hasProperty('buildnum')) {
-    ext.simpleVersion = "${config.pressure.version}.${project.buildnum}"
-} else {
-    ext.simpleVersion = "${config.pressure.version}-DEV"
-}
+ext.simpleVersion = config.pressure.version
 
 version = simpleVersion + '-mc' + config.minecraft.version
 
@@ -71,7 +67,7 @@ repositories {
     }
     maven {
         name "HWYLA"
-        url "http://tehnut.info/maven"
+        url "https://maven.tehnut.info/"
     }
     maven {
         name "OpenComputers"
@@ -81,19 +77,25 @@ repositories {
         name "MCMultipart"
         url "http://maven.amadornes.com/"
     }
+	maven {
+        name = "CoFH Maven"
+        url "http://maven.covers1624.net"
+    }
 }
 
 dependencies {
     compile "net.bdew:bdlib:${config.bdlib.version}-mc${config.minecraft.version}:dev"
 
     deobfCompile "mezz.jei:jei_${config.minecraft.version}:${config.jei.version}"
-    deobfCompile "mcp.mobius.waila:Hwyla:${config.hwyla.version}"
+    compile "mcp.mobius.waila:Hwyla:${config.hwyla.version}:api"
 //    deobfCompile "MCMultiPart:MCMultiPart:${config.mcmultipart.version}:universal"
 
     compile "net.bdew.thirdparty:mekanism:${config.mekanism.version}:api"
 
 //    compile "net.bdew.thirdparty:computercraft:${config.computercraft.version}-mc${config.minecraft.version}:api"
     compile "li.cil.oc:OpenComputers:${config.opencomputers.version}:api"
+	deobfCompile "cofh:CoFHCore:1.12.2-4.6.3.27:universal"
+	
 }
 
 import org.apache.tools.ant.filters.ReplaceTokens

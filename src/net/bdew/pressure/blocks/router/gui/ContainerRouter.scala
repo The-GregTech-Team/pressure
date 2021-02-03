@@ -27,7 +27,7 @@ class ContainerRouter(val te: TileRouter, player: EntityPlayer) extends NoInvCon
     addSlotToContainer(new SlotMode(this, i, 27 + 21 * i, 19))
 
   for (i <- 0 until 6)
-    addSlotToContainer(new SlotFilter(inventory, te.getCapability(PressureAPI.FILTERABLE, EnumFacing.getFront(i)), i, 27 + 21 * i, 39))
+    addSlotToContainer(new SlotFilter(inventory, te.getCapability(PressureAPI.FILTERABLE, EnumFacing.byIndex(i)), i, 27 + 21 * i, 39))
 
   bindPlayerInventory(player.inventory, 8, 84, 142)
 

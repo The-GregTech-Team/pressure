@@ -9,13 +9,14 @@
 
 package net.bdew.pressure.blocks.output
 
-import net.bdew.lib.PimpVanilla._
 import net.bdew.lib.capabilities.helpers.{FluidHandlerNull, FluidHelper}
 import net.bdew.lib.capabilities.{Capabilities, CapabilityProvider}
 import net.bdew.lib.data.base.TileDataSlots
 import net.bdew.pressure.api.IPressureEject
 import net.bdew.pressure.blocks.TileFilterable
 import net.minecraft.util.EnumFacing
+import net.minecraft.util.math.BlockPos
+import net.minecraft.world.World
 import net.minecraftforge.fluids.FluidStack
 
 class TileOutput extends TileDataSlots with CapabilityProvider with IPressureEject with TileFilterable {
@@ -32,7 +33,7 @@ class TileOutput extends TileDataSlots with CapabilityProvider with IPressureEje
 
   addCapabilityOption(Capabilities.CAP_FLUID_HANDLER) { side => if (side == getFacing) Some(FluidHandlerNull) else None }
 
-  override def pressureNodePos = getPos
-  override def pressureNodeWorld = getWorld
+  override def pressureNodePos: BlockPos = getPos
+  override def pressureNodeWorld: World = getWorld
 }
 
