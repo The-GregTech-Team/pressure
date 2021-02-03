@@ -26,7 +26,7 @@ object BlockCheckValve extends BlockValve("check_valve") with HasTE[TileCheckVal
   setHardness(2)
 
   override def neighborChanged(state: IBlockState, world: World, pos: BlockPos, block: Block, fromPos: BlockPos): Unit = {
-    val powered = world.isBlockIndirectlyGettingPowered(pos) > 0
+    val powered = world.getRedstonePowerFromNeighbors(pos) > 0
     if (powered != getSignal(world, pos))
       setSignal(world, pos, powered)
   }

@@ -17,7 +17,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.util.EnumFacing
 
 class SlotMode(container: ContainerRouter, index: Int, x: Int, y: Int) extends Slot(container.inventory, index, x, y) with SlotClickable {
-  val dir = EnumFacing.getFront(index)
+  val dir = EnumFacing.byIndex(index)
 
   override def onClick(clickType: ClickType, button: Int, player: EntityPlayer): ItemStack = {
     val stack = player.inventory.getItemStack

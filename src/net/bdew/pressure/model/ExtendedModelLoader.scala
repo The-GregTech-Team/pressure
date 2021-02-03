@@ -16,13 +16,13 @@ import net.minecraftforge.client.model.{ICustomModelLoader, ModelLoaderRegistry}
 
 object ExtendedModelLoader extends ICustomModelLoader {
   override def accepts(modelLocation: ResourceLocation) =
-    modelLocation.getResourceDomain.equals("pressure") && modelLocation.getResourcePath.endsWith(".extended")
+    modelLocation.getNamespace.equals("pressure") && modelLocation.getPath.endsWith(".extended")
 
   def wrap(model: String, enhancer: ModelEnhancer) =
     enhancer.wrap(ModelLoaderRegistry.getModel(new ResourceLocation(model)))
 
   override def loadModel(modelLocation: ResourceLocation) =
-    modelLocation.getResourcePath match {
+    modelLocation.getPath match {
       case "models/block/filtered_rotated.extended" => wrap("pressure:block/rotated", FluidFilterRotatedModelEnhancer)
       case "models/block/filtered_cube_all.extended" => wrap("minecraft:block/cube_all", FluidFilterModelEnhancer)
       case "models/block/router.extended" => wrap("minecraft:block/cube_all", RouterOverlayModelEnhancer)

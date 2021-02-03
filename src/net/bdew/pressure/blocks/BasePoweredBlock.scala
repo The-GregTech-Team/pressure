@@ -31,7 +31,7 @@ class BasePoweredBlock[T <: TileFilterable](name: String, teClass: Class[T]) ext
   }
 
   override def neighborChanged(state: IBlockState, world: World, pos: BlockPos, block: Block, fromPos: BlockPos): Unit = {
-    val powered = world.isBlockIndirectlyGettingPowered(pos) > 0
+    val powered = world.getRedstonePowerFromNeighbors(pos) > 0
     if (powered != getSignal(state))
       setSignal(world, pos, powered)
   }
